@@ -7,6 +7,9 @@ import { HelmetDatoCms } from "gatsby-source-datocms";
 import { graphql } from "gatsby";
 
 export default function Index({ data: { allPosts, site, blog } }) {
+  // sort allPosts by date
+  allPosts.nodes.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   const heroPost = allPosts.nodes[0];
   const morePosts = allPosts.nodes.slice(1);
 
@@ -41,7 +44,7 @@ export const query = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
-    allPosts: allDatoCmsPost(sort: { fields: date, order: DESC }, limit: 20) {
+    allPosts: allDatoCmsPost(sort: { fields: date, order: ASC }, limit: 20) {
       nodes {
         title
         slug
