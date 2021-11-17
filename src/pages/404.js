@@ -9,8 +9,7 @@ const pageStyles = {
 }
 const headingStyles = {
   marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
+  marginBottom: 64
 }
 
 const paragraphStyles = {
@@ -28,8 +27,9 @@ const codeStyles = {
 const NotFoundPage = () => {
   return (
     <main style={pageStyles}>
-      <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
+      <title>Camino desconocido</title>
+      <h1 style={headingStyles}>Hey</h1>
+      <img src="https://www.datocms-assets.com/58484/1637106095-undrawhandcraftsexclamationmark.svg" alt="404" />
       <p style={paragraphStyles}>
         Sorry{" "}
         <span role="img" aria-label="Pensive emoji">

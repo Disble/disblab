@@ -3,6 +3,8 @@ require("dotenv").config();
 module.exports = {
   siteMetadata: {
     title: "Disblelab",
+    author: "Disble",
+    description: "The White World"
   },
   plugins: [
     "gatsby-plugin-postcss",
