@@ -4,6 +4,7 @@ import Intro from "../components/intro";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { graphql } from "gatsby";
 import Header from "../components/header";
+import LandingHeader from "../components/landing-header";
 
 export default function Index({ data: { site, blog } }) {
 
@@ -12,6 +13,7 @@ export default function Index({ data: { site, blog } }) {
       <HelmetDatoCms seo={blog.seo} favicon={site.favicon} />
       <Intro />
       <Header />
+      <LandingHeader />
     </Container>
   );
 }

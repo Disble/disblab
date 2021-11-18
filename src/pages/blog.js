@@ -18,9 +18,6 @@ export default function Blog({ data: { allPosts, site, blog } }) {
   return (
     <Container>
       <HelmetDatoCms seo={blog.seo} favicon={site.favicon} />
-      <Helmet>
-        <title>Disblelab</title>
-      </Helmet>
       <Intro />
       <Header />
       {heroPost && (
