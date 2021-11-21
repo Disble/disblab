@@ -4,7 +4,6 @@ import HeroPost from "../components/hero-post";
 import Intro from "../components/intro";
 import MoreStories from "../components/more-stories";
 import { HelmetDatoCms } from "gatsby-source-datocms";
-import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import Header from "../components/header";
 
