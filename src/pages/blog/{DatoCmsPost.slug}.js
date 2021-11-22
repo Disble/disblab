@@ -7,8 +7,16 @@ import PostBody from "../../components/post-body";
 import PostHeader from "../../components/post-header";
 import SectionSeparator from "../../components/section-separator";
 import { HelmetDatoCms } from "gatsby-source-datocms";
+import { DiscussionEmbed } from "disqus-react";
+
 
 export default function Post({ data: { site, post, morePosts } }) {
+  const disqusConfig = {
+    shortname: process.env.GATSBY_DISQUS_NAME,
+    config: { identifier: post.slug, title: post.title },
+  }
+
+
   return (
     <Container>
       <HelmetDatoCms seo={post.seo} favicon={site.favicon} />
@@ -24,6 +32,7 @@ export default function Post({ data: { site, post, morePosts } }) {
       </article>
       <SectionSeparator />
       {morePosts.nodes.length > 0 && <MoreStories posts={morePosts.nodes} />}
+      <DiscussionEmbed {...disqusConfig} />
     </Container>
   );
 }
