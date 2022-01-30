@@ -8,12 +8,12 @@ import vsDark from 'prism-react-renderer/themes/vsDark';
 export default function PostBody({ content }) {
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="prose prose-lg prose-blue">
+      <div className="prose prose-lg prose-img:rounded-2xl prose-a:text-purple-700 hover:prose-a:text-purple-600 prose-code:text-sky-700 prose-p:overflow-auto">
         <StructuredText
           data={content}
           renderBlock={({ record }) => {
             if (record.__typename === "DatoCmsImageBlock") {
-              return <GatsbyImage image={record.image.gatsbyImageData} />;
+              return <GatsbyImage image={record.image.gatsbyImageData} alt="" />;
             }
             return (
               <>

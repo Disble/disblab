@@ -1,14 +1,12 @@
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  media: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
         "accent-1": "#FAFAFA",
         "accent-2": "#EAEAEA",
         "accent-7": "#333",
-        success: "#0070f3",
-        cyan: "#79FFE1",
         "disble-blue": "#6284BD"
       },
       spacing: {
@@ -33,6 +31,9 @@ module.exports = {
         small: "0 5px 10px rgba(0, 0, 0, 0.12)",
         medium: "0 8px 30px rgba(0, 0, 0, 0.12)",
       },
+      screens: {
+        '2xl': '1280px',
+      }
     },
   },
   variants: {

@@ -1,13 +1,9 @@
 import React from "react";
-import Container from "../components/container";
-import HeroPost from "../components/hero-post";
-import Intro from "../components/intro";
+import { Layout, HeroPost } from '../components';
 import MoreStories from "../components/more-stories";
-import { HelmetDatoCms } from "gatsby-source-datocms";
 import { graphql } from "gatsby";
-import Header from "../components/header";
 
-export default function Blog({ data: { allPosts, site, blog } }) {
+export default function Blog({ data: { allPosts } }) {
   // sort allPosts by date
   allPosts.nodes.sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -15,10 +11,7 @@ export default function Blog({ data: { allPosts, site, blog } }) {
   const morePosts = allPosts.nodes.slice(1);
 
   return (
-    <Container>
-      <HelmetDatoCms seo={blog.seo} favicon={site.favicon} />
-      <Intro />
-      <Header />
+    <Layout>
       {heroPost && (
         <HeroPost
           title={heroPost.title}
@@ -30,22 +23,12 @@ export default function Blog({ data: { allPosts, site, blog } }) {
         />
       )}
       {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-    </Container>
+    </Layout>
   );
 }
 
 export const query = graphql`
   {
-    site: datoCmsSite {
-      favicon: faviconMetaTags {
-        ...GatsbyDatoCmsFaviconMetaTags
-      }
-    }
-    blog: datoCmsBlog {
-      seo: seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
-      }
-    }
     allPosts: allDatoCmsPost(sort: { fields: date, order: DESC }, limit: 20) {
       nodes {
         title
