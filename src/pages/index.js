@@ -93,7 +93,7 @@ export default function Index({ data: { site, blog, portfolio } }) {
             </a>
           </div>
         </section>
-        <section className="bg-gray-50 rounded-2xl mb-20">
+        <section className="rounded-2xl mb-20">
           <h2 className="text-4xl font-bold text-gray-500 mb-8">Descarga mi CV</h2>
           <div className="w-full flex justify-center">
             <a href={cvDisble} className="bg-purple-700 px-5 py-3 text-white text-lg font-bold rounded-lg hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-900 focus:ring-offset-2 cursor-pointer flex flex-row gap-2">
