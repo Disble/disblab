@@ -1,5 +1,3 @@
-export { default as Timeline } from './Timeline';
-export { default as TimelineItem } from './timeline-item';
 export { default as Header } from './header';
 export { default as Container } from './container';
 export { default as Intro } from './intro';
