@@ -1,6 +1,6 @@
 import React from "react";
-import { graphql } from "gatsby";
-import { Container, Header, ProfileImage } from '../components';
+import { graphql, Link } from "gatsby";
+import { Container, Header, Navbar, ProfileImage } from '../components';
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import reactLogo from '../images/react.svg';
 import typesriptLogo from '../images/typescript.svg';
@@ -13,113 +13,122 @@ import ucooppaneImg from '../images/ucooppane.png';
 import dboxImg from '../images/dbox.png';
 import autoreasImg from '../images/autoreas.png';
 import cvDisble from '../docs/Alejandro.Arias.CV.pdf';
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
+import { AnchorLink } from "gatsby-plugin-anchor-links";
+import Img from 'gatsby-image';
 
 
-export default function Index({ data: { site, blog, portfolio } }) {
+export default function Index({ data: { site, blog, portfolio, disblePoster } }) {
   return (
     <>
-      <Container className="">
-        <HelmetDatoCms seo={blog.seo} favicon={site.favicon} />
-        <header className="z-10">
-          <Header />
-        </header>
-        <main className="z-0 selection:bg-blue-300 selection:text-blue-900">
-          <section className="flex flex-col md:flex-row z-10 mx-auto max-w-7xl">
-            <div className="flex-none md:flex-1 z-10">
-              <h1 className="text-2xl text-gray-700 text-disble">Hola, mi nombre es</h1>
-              <h2 className="leading-tight text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-700 !text-[clamp(40px,_5vw,_80px)]">Alejandro Arias</h2>
-              <p className="mt-4 text-black text-lg selection:bg-purple-300 selection:text-purple-900">Soy desarrollador {' '}{' '}
-                <span className="group hover:before:block hover:before:absolute hover:before:-inset-1 hover:before:-skew-y-3 hover:before:bg-gradient-to-r hover:before:from-blue-500 hover:before:to-purple-700 relative inline-block">
-                  <span className="relative font-bold text-purple-900 group-hover:text-white">
-                    Frontend
-                  </span>
-                </span> y entusiasta de la Web3.
-              </p>
-            </div>
-            <div className="flex-none md:flex-1 mt-12 flex justify-center z-10">
-              <ProfileImage />
-            </div>
-          </section>
-          <section className="mb-20">
-            <h2 className="text-4xl font-bold text-gray-500 mb-6">Tecnologías</h2>
-            <p className="mb-8">Siempre estoy dispuesto a aprender nuevas tecnologías y metodologías, estas son la que mejor domino actualmente:</p>
-            <div className="flex flex-wrap gap-6 justify-evenly lg:justify-start lg:gap-10 items-center lg:ml-10">
-              <div className="flex flex-col gap-3 justify-start items-center">
-                <img className="h-12" src={reactLogo} alt="reactLogo" />
-                <p className="text-sm font-bold text-gray-500">React.js</p>
+      <HelmetDatoCms seo={blog.seo} favicon={site.favicon} />
+      <div
+        className="bg-stone-100"
+      >
+        <div
+          className="grid grid-cols-1 md:grid-cols-[160px_minmax(900px,_1fr)] gap-4"
+        >
+          <header
+            className="h-screen hidden md:block"
+          >
+            <nav
+              className="bg-white h-full flex flex-col gap-8 pt-8"
+            >
+              <div className="w-full grid place-items-center">
+                <StaticImage alt="UCOoppane" className="w-20 h-20" src="https://www.datocms-assets.com/58484/1637121616-foto-square.png?auto=format&dpr=0.12&w=3880" />
               </div>
-              <div className="flex flex-col gap-3 justify-start items-center">
-                <img className="h-12" src={gatsbyLogo} alt="gatsbyLogo" />
-                <p className="text-sm font-bold text-gray-500">Gatsby</p>
-              </div>
-              <div className="flex flex-col gap-3 justify-start items-center">
-                <img className="h-12" src={typesriptLogo} alt="typesriptLogo" />
-                <p className="text-sm font-bold text-gray-500">TypeScript</p>
-              </div>
-              <div className="flex flex-col gap-3 justify-start items-center">
-                <img className="h-12" src={nodeLogo} alt="nodeLogo" />
-                <p className="text-sm font-bold text-gray-500">Node.js</p>
-              </div>
-              <div className="flex flex-col gap-3 justify-start items-center">
-                <img className="h-12" src={electronLogo} alt="electronLogo" />
-                <p className="text-sm font-bold text-gray-500">Electron.js</p>
-              </div>
-              <div className="flex flex-col gap-3 justify-start items-center">
-                <img className="h-12" src={gitLogo} alt="gitLogo" />
-                <p className="text-sm font-bold text-gray-500">Git</p>
-              </div>
-              <div className="flex flex-col gap-3 justify-start items-center">
-                <img className="h-12 w-14" src={tailwindLogo} alt="tailwindLogo" />
-                <p className="text-sm font-bold text-gray-500">Tailwind CSS</p>
-              </div>
-            </div>
-          </section>
-          <section className="mb-20">
-            <h2 className="text-4xl font-bold text-gray-500 mb-6">Proyectos</h2>
-            <p className="mb-8">Usualmente hay algo cocinandose en la cocina; no obstante, estos son los proyectos que más me gustan:</p>
-            <div className="flex flex-row flex-wrap gap-6 lg:gap-10 items-center justify-center lg:justify-start lg:ml-10">
-              <div className="relative transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl duration-300 border-4 border-slate-600 rounded-2xl">
-                <img className="w-64 aspect-square object-cover object-left rounded-xl" src={ucooppaneImg} alt="ucooppaneImg" />
-                <div className="absolute bottom-0 inset-x-0 h-16 rounded-b-xl bg-white/80 flex flex-col justify-center">
-                  <h1 className="text-purple-900 font-bold text-center">UCOOPPANE</h1>
-                  <p className="text-purple-900 text-sm text-center font-bold">E-commerce con Woocomerce</p>
+              <h2 className="text-2xl font-bold text-gray-700 text-center">Alejandro Arias</h2>
+              <ul
+                className="divide-y divide-gray-200 text-gray-600"
+              >
+                <li
+                  className="py-2 text-center hover:bg-gray-100 active:bg-gray-200 border-r-2 border-violet-500"
+                >
+                  <a href="#about">About Me</a>
+                  <AnchorLink
+                    to="/#about"
+                    className="block w-full h-full"
+                  />
+                </li>
+                <li
+                  className="py-2 text-center hover:bg-gray-100 active:bg-gray-200 border-r-2 border-transparent"
+                >
+                  {/* <a href="#resume">Resume</a> */}
+                  <AnchorLink
+                    to="/#resume"
+                    title="Resume"
+                    className="block w-full h-full"
+                  />
+                </li>
+                <li
+                  className="py-2 text-center hover:bg-gray-100 active:bg-gray-200 border-r-2 border-transparent"
+                >
+                  <a href="#portfolio">Portfolio</a>
+                </li>
+                <li
+                  className="py-2 text-center hover:bg-gray-100 active:bg-gray-200 border-r-2 border-transparent"
+                >
+                  <Link to="/blog">Blog</Link>
+                </li>
+                <li
+                  className="py-2 text-center hover:bg-gray-100 active:bg-gray-200 border-r-2 border-transparent"
+                >
+                  <a href="#contact">Contact</a>
+                </li>
+              </ul>
+            </nav>
+          </header>
+          <main
+            className="h-screen md:max-w-[calc(100vw_-_176px)] overflow-auto flex flex-col gap-4"
+          >
+            <section className="bg-white py-8 px-10">
+              <div className="grid grid-flow-row md:grid-cols-[250px_minmax(0,1fr)] gap-8">
+                <Img fluid={disblePoster.nodes[0].fluid} />
+                <div>
+                  <span className="text-gray-400 text-sm">Ingeniero en Sistemas Computacionales</span>
+                  <h2 className="text-5xl font-bold text-gray-700">Alejandro Arias</h2>
+                  <p>Soy desarrollador de Software en tecnologías web con conocimientos en JavaScript, React.js, Gatsby.js y también un apasionado en Blockchain y Web3. Me gusta la filosofía de nunca parar de aprender.</p>
                 </div>
               </div>
-              <a href="https://github.com/Disble/dbox" className="relative transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl duration-300 border-4 border-slate-600 rounded-2xl">
-                <img className="w-64 aspect-square object-cover rounded-xl" src={dboxImg} alt="dboxImg" />
-                <div className="absolute bottom-0 inset-x-0 h-16 rounded-b-xl bg-white/80 flex flex-col justify-center">
-                  <h1 className="text-purple-900 font-bold text-center">dbox</h1>
-                  <p className="text-purple-900 text-sm text-center font-bold">App Desktop con Electron y Vue.js</p>
-                </div>
-              </a>
-              <a href="https://github.com/Disble/automatizar-tareas" className="relative transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl duration-300 border-4 border-slate-600 rounded-2xl">
-                <img className="w-64 aspect-square object-cover object-left rounded-xl" src={autoreasImg} alt="autoreasImg" />
-                <div className="absolute bottom-0 inset-x-0 h-16 rounded-b-xl bg-white/80 flex flex-col justify-center">
-                  <h1 className="text-purple-900 font-bold text-center">Autoreas</h1>
-                  <p className="text-purple-900 text-sm text-center font-bold">App Desktop con Electron</p>
-                </div>
-              </a>
-            </div>
-          </section>
-          <section className="rounded-2xl mb-20">
-            <h2 className="text-4xl font-bold text-gray-500 mb-6">Descarga mi CV</h2>
-            <p className="mb-20">Si te ha gustado lo que has visto, puedes saber un poco más de mí descargando mi CV:</p>
-            <div className="w-full flex justify-center">
-              <a href={cvDisble} target="_blank" className="bg-gradient-to-r from-blue-500 to-purple-700 px-5 py-3 text-white text-lg font-bold rounded-lg hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-800 focus:outline-none focus:ring-2 focus:bg-gradient-to-r focus:from-blue-800 focus:to-purple-900 focus:text-purple-50 focus:ring-offset-2 cursor-pointer flex flex-row gap-2">
-                Quiero descargarlo
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-              </a>
-            </div>
-          </section>
-        </main>
-      </Container>
-      <footer className="bg-gradient-to-r from-blue-500 to-purple-700 text-white text-sm h-20 flex items-center justify-center">
-        <span>
-          Portafolio hecho con Gastby y Tailwind CSS.
-        </span>
-      </footer>
+            </section>
+            <section className="bg-white py-8 px-10" id="resume">
+              <h2 className="text-3xl font-bold text-gray-700">Resume</h2>
+              <div className="divider"></div>
+            </section>
+            <section className="bg-white py-8 px-10">
+              <h2 className="text-3xl font-bold text-gray-700">Portfolio</h2>
+              <div className="divider"></div>
+              <p className="mb-8">Usualmente hay algo cocinandose en la cocina; no obstante, estos son los proyectos que más me gustan:</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero molestias voluptate maiores ducimus quas iusto illum provident omnis praesentium velit eius accusamus, illo doloribus labore suscipit expedita quam necessitatibus quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti dolor sunt odio error, quaerat eaque nihil officia veritatis perferendis perspiciatis, animi nisi, culpa magnam. Quae provident minus quia libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ipsa eveniet ratione itaque nam numquam? Laudantium est doloribus vitae ea expedita, quam at maiores saepe, quo rerum, praesentium hic atque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a est, nulla accusantium eos soluta ut voluptatibus saepe rerum corrupti corporis cupiditate rem voluptates molestias possimus vel error quod iure?</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero molestias voluptate maiores ducimus quas iusto illum provident omnis praesentium velit eius accusamus, illo doloribus labore suscipit expedita quam necessitatibus quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti dolor sunt odio error, quaerat eaque nihil officia veritatis perferendis perspiciatis, animi nisi, culpa magnam. Quae provident minus quia libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ipsa eveniet ratione itaque nam numquam? Laudantium est doloribus vitae ea expedita, quam at maiores saepe, quo rerum, praesentium hic atque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a est, nulla accusantium eos soluta ut voluptatibus saepe rerum corrupti corporis cupiditate rem voluptates molestias possimus vel error quod iure?</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero molestias voluptate maiores ducimus quas iusto illum provident omnis praesentium velit eius accusamus, illo doloribus labore suscipit expedita quam necessitatibus quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti dolor sunt odio error, quaerat eaque nihil officia veritatis perferendis perspiciatis, animi nisi, culpa magnam. Quae provident minus quia libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ipsa eveniet ratione itaque nam numquam? Laudantium est doloribus vitae ea expedita, quam at maiores saepe, quo rerum, praesentium hic atque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a est, nulla accusantium eos soluta ut voluptatibus saepe rerum corrupti corporis cupiditate rem voluptates molestias possimus vel error quod iure?</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero molestias voluptate maiores ducimus quas iusto illum provident omnis praesentium velit eius accusamus, illo doloribus labore suscipit expedita quam necessitatibus quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti dolor sunt odio error, quaerat eaque nihil officia veritatis perferendis perspiciatis, animi nisi, culpa magnam. Quae provident minus quia libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ipsa eveniet ratione itaque nam numquam? Laudantium est doloribus vitae ea expedita, quam at maiores saepe, quo rerum, praesentium hic atque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a est, nulla accusantium eos soluta ut voluptatibus saepe rerum corrupti corporis cupiditate rem voluptates molestias possimus vel error quod iure?</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero molestias voluptate maiores ducimus quas iusto illum provident omnis praesentium velit eius accusamus, illo doloribus labore suscipit expedita quam necessitatibus quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti dolor sunt odio error, quaerat eaque nihil officia veritatis perferendis perspiciatis, animi nisi, culpa magnam. Quae provident minus quia libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ipsa eveniet ratione itaque nam numquam? Laudantium est doloribus vitae ea expedita, quam at maiores saepe, quo rerum, praesentium hic atque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a est, nulla accusantium eos soluta ut voluptatibus saepe rerum corrupti corporis cupiditate rem voluptates molestias possimus vel error quod iure?</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero molestias voluptate maiores ducimus quas iusto illum provident omnis praesentium velit eius accusamus, illo doloribus labore suscipit expedita quam necessitatibus quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti dolor sunt odio error, quaerat eaque nihil officia veritatis perferendis perspiciatis, animi nisi, culpa magnam. Quae provident minus quia libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ipsa eveniet ratione itaque nam numquam? Laudantium est doloribus vitae ea expedita, quam at maiores saepe, quo rerum, praesentium hic atque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a est, nulla accusantium eos soluta ut voluptatibus saepe rerum corrupti corporis cupiditate rem voluptates molestias possimus vel error quod iure?</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero molestias voluptate maiores ducimus quas iusto illum provident omnis praesentium velit eius accusamus, illo doloribus labore suscipit expedita quam necessitatibus quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti dolor sunt odio error, quaerat eaque nihil officia veritatis perferendis perspiciatis, animi nisi, culpa magnam. Quae provident minus quia libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ipsa eveniet ratione itaque nam numquam? Laudantium est doloribus vitae ea expedita, quam at maiores saepe, quo rerum, praesentium hic atque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a est, nulla accusantium eos soluta ut voluptatibus saepe rerum corrupti corporis cupiditate rem voluptates molestias possimus vel error quod iure?</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero molestias voluptate maiores ducimus quas iusto illum provident omnis praesentium velit eius accusamus, illo doloribus labore suscipit expedita quam necessitatibus quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti dolor sunt odio error, quaerat eaque nihil officia veritatis perferendis perspiciatis, animi nisi, culpa magnam. Quae provident minus quia libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ipsa eveniet ratione itaque nam numquam? Laudantium est doloribus vitae ea expedita, quam at maiores saepe, quo rerum, praesentium hic atque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a est, nulla accusantium eos soluta ut voluptatibus saepe rerum corrupti corporis cupiditate rem voluptates molestias possimus vel error quod iure?</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero molestias voluptate maiores ducimus quas iusto illum provident omnis praesentium velit eius accusamus, illo doloribus labore suscipit expedita quam necessitatibus quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti dolor sunt odio error, quaerat eaque nihil officia veritatis perferendis perspiciatis, animi nisi, culpa magnam. Quae provident minus quia libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ipsa eveniet ratione itaque nam numquam? Laudantium est doloribus vitae ea expedita, quam at maiores saepe, quo rerum, praesentium hic atque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem a est, nulla accusantium eos soluta ut voluptatibus saepe rerum corrupti corporis cupiditate rem voluptates molestias possimus vel error quod iure?</p>
+            </section>
+            <section className="bg-white py-8 px-10">
+              <h2 className="text-4xl font-bold text-gray-500 mb-6">Descarga mi CV</h2>
+              <p className="mb-20">Si te ha gustado lo que has visto, puedes saber un poco más de mí descargando mi CV:</p>
+              <div className="w-full flex justify-center">
+                <a href={cvDisble} target="_blank" className="bg-gradient-to-r from-blue-500 to-purple-700 px-5 py-3 text-white text-lg font-bold rounded-lg hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-800 focus:outline-none focus:ring-2 focus:bg-gradient-to-r focus:from-blue-800 focus:to-purple-900 focus:text-purple-50 focus:ring-offset-2 cursor-pointer flex flex-row gap-2">
+                  Quiero descargarlo
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                </a>
+              </div>
+            </section>
+            <footer className="bg-gradient-to-r from-blue-500 to-purple-700 text-white text-sm min-h-[80px] flex items-center justify-center">
+              <span>
+                Portafolio hecho con Gastby y Tailwind CSS.
+              </span>
+            </footer>
+          </main>
+        </div>
+      </div>
     </>
   );
 }
@@ -145,6 +154,17 @@ export const query = graphql`
         description
         teaser {
           small: gatsbyImageData(width: 760)
+        }
+      }
+    },
+    disblePoster: allDatoCmsAsset(filter: {basename: {eq: "disble-poster-artwork"}}) {
+      nodes {
+        format
+        author
+        filename
+        basename
+        fluid(maxWidth: 300) {
+          ...GatsbyDatoCmsFluid
         }
       }
     }
