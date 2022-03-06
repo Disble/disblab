@@ -4,10 +4,10 @@ import { HelmetDatoCms } from "gatsby-source-datocms";
 import { StaticImage } from "gatsby-plugin-image";
 import telegramSVG from "../images/telegram-1.svg";
 import Img from 'gatsby-image';
+import { StructuredContent } from "../components/structured-content";
 
 
-export default function Index({ data: { site, blog, portfolio, disblePoster } }) {
-console.log("🔅 : Index : portfolio", portfolio.nodes);
+export default function Index({ data: { site, blog, portfolio, disblePoster, timelineExperience, timelineEducation } }) {
   const publications = [
     {
       year: "2020",
@@ -80,7 +80,7 @@ console.log("🔅 : Index : portfolio", portfolio.nodes);
           <main
             className="h-screen md:max-w-[calc(100vw_-_176px)] overflow-auto flex flex-col gap-4"
           >
-            <section className="bg-white py-8 px-10" id="about">
+            <section className="bg-white py-8 px-5 md:px-10" id="about">
               <div className="grid grid-flow-row md:grid-cols-[250px_minmax(0,1fr)] gap-8">
                 <Img fluid={disblePoster.nodes[0].fluid} />
                 <div>
@@ -100,12 +100,55 @@ console.log("🔅 : Index : portfolio", portfolio.nodes);
                 </div>
               </div>
             </section>
-            <section className="bg-white py-8 px-10" id="resume">
-              <h2 className="text-3xl font-bold text-gray-700">Resume</h2>
+            {/* Resume */}
+            <section className="bg-white py-8 px-5 md:px-10" id="resume">
+              <h2 className="text-3xl font-bold text-gray-700">Currículum</h2>
               <div className="divider"></div>
+              <h2 className="text-2xl font-bold text-gray-700 underline decoration-violet-500 mb-6">Experiencia</h2>
+              <div>
+                {
+                  timelineExperience && timelineExperience.nodes && timelineExperience.nodes.map((experience, i) => (
+                    <div key={`experience-${i}`} className="grid grid-cols-[35px_minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_35px_minmax(0,2fr)]">
+                        <div className="text-sm flex flex-col gap-2 col-start-2 md:col-start-1">
+                          <h3 className="font-bold text-gray-700 text-left md:text-right text-base">{experience.dateStart} - {experience.isCurrentDate ? 'Actualidad' : experience.dateEnd}</h3>
+                          <p className="text-gray-500 text-left md:text-right">{experience.situation}</p>
+                        </div>
+                        <div className="flex flex-row justify-center row-start-1 row-end-3 col-start-1 md:col-start-2">
+                          <div className="relative bg-violet-300 w-[1px] after:h-4 after:w-4 after:rounded-full after:border-2 after:border-violet-400 after:bg-white after:content-[''] after:absolute after:top-1 after:-right-[7.5px]">
+                        </div>
+                        </div>
+                        <div className="text-sm text-gray-700 col-start-2 md:col-start-3 flex flex-col gap-2 mb-4">
+                          <h3 className="font-bold text-gray-700 text-base">{experience.job}</h3>
+                          <StructuredContent content={experience.descriptionJob} />
+                        </div>
+                    </div>
+                  ))
+                }
+              </div>
+              <h2 className="text-2xl font-bold text-gray-700 underline decoration-violet-500 mb-6 mt-6">Educación</h2>
+              <div>
+                {
+                  timelineEducation && timelineEducation.nodes && timelineEducation.nodes.map((education, i) => (
+                    <div key={`education-${i}`} className="grid grid-cols-[35px_minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_35px_minmax(0,2fr)]">
+                        <div className="text-sm flex flex-col gap-2 col-start-2 md:col-start-1">
+                        <h3 className="font-bold text-gray-700 text-left md:text-right text-base">{education.dateStart} - {education.isCurrentDate ? 'Actualidad' : education.dateEnd}</h3>
+                          <p className="text-gray-500 text-left md:text-right">{education.situation}</p>
+                        </div>
+                        <div className="flex flex-row justify-center row-start-1 row-end-3 col-start-1 md:col-start-2">
+                          <div className="relative bg-violet-300 w-[1px] after:h-4 after:w-4 after:rounded-full after:border-2 after:border-violet-400 after:bg-white after:content-[''] after:absolute after:top-1 after:-right-[7.5px]">
+                        </div>
+                        </div>
+                        <div className="text-sm text-gray-700 col-start-2 md:col-start-3 flex flex-col gap-2 mb-4">
+                          <h3 className="font-bold text-gray-700 text-base">{education.job}</h3>
+                          <StructuredContent content={education.descriptionJob} />
+                        </div>
+                    </div>
+                  ))
+                }
+              </div>
             </section>
             {/* Portfolio */}
-            <section className="bg-white py-8 px-10 flex flex-col gap-6" id="portfolio">
+            <section className="bg-white py-8 px-5 md:px-10 flex flex-col gap-6" id="portfolio">
               <section>
                 <h2 className="text-3xl font-bold text-gray-700">Portfolio</h2>
                 <div className="divider"></div>
@@ -201,7 +244,7 @@ console.log("🔅 : Index : portfolio", portfolio.nodes);
               </section>
             </section>
             {/* Contact */}
-            <section className="bg-white py-8 px-10" id="cv">
+            <section className="bg-white py-8 px-5 md:px-10" id="cv">
               <h2 className="text-4xl font-bold text-gray-500 mb-6">Contacto</h2>
               <div className="flex flex-row justify-around gap-8">
                 {/* card button with shadow and transition */}
@@ -225,7 +268,7 @@ console.log("🔅 : Index : portfolio", portfolio.nodes);
               </div>
             </section>
             <footer className="bg-white text-gray-600 text-sm min-h-[80px] flex items-center justify-center">
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-700">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-700">
                 Portafolio hecho con Gastby y Tailwind CSS.
               </span>
             </footer>
@@ -270,6 +313,54 @@ export const query = graphql`
         basename
         fluid(maxWidth: 300) {
           ...GatsbyDatoCmsFluid
+        }
+      }
+    }
+    timelineExperience: allDatoCmsTimeline(
+      filter: {timelineCategory: {eq: "Experiencia"}}
+    ) {
+      nodes {
+        job
+        locale
+        dateEnd(formatString: "MM/y")
+        dateStart(formatString: "MM/y")
+        isCurrentDate
+        id
+        imageMinicover {
+          fluid(maxWidth: 300) {
+            ...GatsbyDatoCmsFluid
+          }
+        }
+        timelineCategory
+        situation
+        descriptionJob {
+          value
+          blocks
+          links
+        }
+      }
+    }
+    timelineEducation: allDatoCmsTimeline(
+      filter: {timelineCategory: {eq: "Educación"}}
+    ) {
+      nodes {
+        job
+        locale
+        dateEnd(formatString: "MM/y")
+        dateStart(formatString: "MM/y")
+        isCurrentDate
+        id
+        imageMinicover {
+          fluid(maxWidth: 300) {
+            ...GatsbyDatoCmsFluid
+          }
+        }
+        timelineCategory
+        situation
+        descriptionJob {
+          value
+          blocks
+          links
         }
       }
     }

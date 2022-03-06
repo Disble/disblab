@@ -6,7 +6,6 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import vsDark from 'prism-react-renderer/themes/vsDark';
 
 export default function PostBody({ content }) {
-  console.log('💙', renderRule, StructuredText);
   return (
     <div className="max-w-2xl mx-auto">
       <div className="prose prose-lg prose-img:rounded-2xl prose-a:text-purple-700 hover:prose-a:text-purple-600 prose-code:text-sky-700 prose-p:overflow-auto">
