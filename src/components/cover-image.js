@@ -8,7 +8,7 @@ export default function CoverImage({ title, fluid, slug }) {
     <GatsbyImage
       image={fluid}
       alt={`Cover Image for ${title}`}
-      className={cn("shadow-small", {
+      className={cn("shadow-small aspect-video", {
         "hover:shadow-medium transition-shadow duration-200": slug,
       })}
     />
