@@ -8,4 +8,6 @@ export { default as PostBody } from "./post-body";
 export { default as PostHeader } from "./post-header";
 export { default as SectionSeparator } from "./section-separator";
 export { default as ProfileImage } from "./profile-image";
-export { default as StructuredContent } from "./structured-content";
+export * from "./structured-content";
+export * from "./timeline";
+export * from "./navbar";

@@ -4,19 +4,44 @@ import { HelmetDatoCms } from "gatsby-source-datocms";
 import { StaticImage } from "gatsby-plugin-image";
 import telegramSVG from "../images/telegram-1.svg";
 import Img from 'gatsby-image';
-import { StructuredContent } from "../components/structured-content";
+import { Navbar, Timeline } from "../components";
+import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const menu = [
+  {
+    title: "Acerca de...",
+    link: "/#about",
+  },
+  {
+    title: "Currículum",
+    link: "/#resume",
+  },
+  {
+    title: "Portafolio",
+    link: "/#portfolio",
+  },
+  {
+    title: "Contacto",
+    link: "/#cv",
+  },
+  {
+    title: "Blog",
+    link: "/blog",
+  },
+];
+const publications = [
+  {
+    year: "2020",
+    title: "Modelo interactivo de visualización de información utilizando librerías de renderizado 3D orientado a la reducción de dimensiones",
+    description: "I am a Full Stack Developer with a passion for building web applications. I have a strong background in front-end development and I am currently learning back-end development. I am currently working as a Full Stack Developer at <a href='https://www.crowdcube.com/' target='_blank' rel='noopener noreferrer'>Crowdcube</a>.",
+    authors: "Alejandro Arias",
+    link: "http://repositorio.utn.edu.ec/handle/123456789/11523?locale=en",
+  },
+];
 
 
-export default function Index({ data: { site, blog, portfolio, disblePoster, timelineExperience, timelineEducation } }) {
-  const publications = [
-    {
-      year: "2020",
-      title: "Modelo interactivo de visualización de información utilizando librerías de renderizado 3D orientado a la reducción de dimensiones",
-      description: "I am a Full Stack Developer with a passion for building web applications. I have a strong background in front-end development and I am currently learning back-end development. I am currently working as a Full Stack Developer at <a href='https://www.crowdcube.com/' target='_blank' rel='noopener noreferrer'>Crowdcube</a>.",
-      authors: "Alejandro Arias",
-      link: "http://repositorio.utn.edu.ec/handle/123456789/11523?locale=en",
-    },
-  ];
+export default function Index({ data: { site, blog, portfolio, disblePoster, timelineExperience, timelineEducation, timelineAwards } }) {
   const cvDisble = "https://drive.google.com/file/d/1PJ1VFHyKp1eVeZ-T3M_RnkmO8b5jzoyT/view?usp=sharing";
   return (
     <>
@@ -36,47 +61,44 @@ export default function Index({ data: { site, blog, portfolio, disblePoster, tim
               <div className="w-full grid place-items-center">
                 <StaticImage alt="UCOoppane" className="w-20 h-20" src="https://www.datocms-assets.com/58484/1637121616-foto-square.png?auto=format&dpr=0.12&w=3880" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-700 text-center">Alejandro Arias</h2>
+              <h2 className="text-xl font-bold text-gray-700 text-center px-2">Alejandro Arias</h2>
               <div
                 className="divide-y divide-gray-200 text-gray-600"
               >
-                <div
-                  className="py-2 text-center hover:bg-gray-100 active:bg-gray-200 border-r-2 border-violet-500"
+                {
+                  menu && menu.map((item, index) => (
+                    <Link
+                      key={`menu-${index}`}
+                      className="block py-2 text-center hover:bg-gray-100 active:bg-gray-200"
+                      to={item.link}
+                    >
+                      {item.title}
+                    </Link>
+                  ))
+                }
+              </div>
+              <div className="flex flex-row gap-2 justify-center items-center">
+                <a
+                  href="https://www.linkedin.com/in/disble/"
+                  target="_blank"
+                  className="bg-gray-200 py-1 px-2 text-gray-500 hover:bg-gray-300 active:bg-gray-400 active:text-gray-700"
                 >
-                  {/* <AnchorLink to="#about" title="Our team">
-                    <span>About Me</span>
-                  </AnchorLink> */}
-                  <Link to="/#about">About Me</Link>
-                </div>
-                <div
-                  className="py-2 text-center hover:bg-gray-100 active:bg-gray-200 border-r-2 border-transparent"
+                  <FontAwesomeIcon className="aspect-square" icon={faLinkedinIn} />
+                </a>
+                <a
+                  href="https://github.com/disble"
+                  target="_blank"
+                  className="bg-gray-200 py-1 px-2 text-gray-500 hover:bg-gray-300 active:bg-gray-400 active:text-gray-700"
                 >
-                  {/* <AnchorLink to="#resume" title="Our team">
-                    <span>Resume</span>
-                  </AnchorLink> */}
-                  <a href="#resume">Resume</a>
-                </div>
-                <div
-                  className="py-2 text-center hover:bg-gray-100 active:bg-gray-200 border-r-2 border-transparent"
-                >
-                  <a href="#portfolio">Portfolio</a>
-                </div>
-                <div
-                  className="py-2 text-center hover:bg-gray-100 active:bg-gray-200 border-r-2 border-transparent"
-                >
-                  <Link to="/blog">Blog</Link>
-                </div>
-                <div
-                  className="py-2 text-center hover:bg-gray-100 active:bg-gray-200 border-r-2 border-transparent"
-                >
-                  {/* <AnchorLink to="#cv" title="Our team">
-                    <span>Contact</span>
-                  </AnchorLink> */}
-                  <a href="#cv">Contact</a>
-                </div>
+                  <FontAwesomeIcon icon={faGithub} />
+                </a>
               </div>
             </nav>
           </header>
+          <Navbar
+            navigation={menu}
+            className="block fixed inset-x-0 z-50 md:hidden"
+          />
           <main
             className="h-screen md:max-w-[calc(100vw_-_176px)] overflow-auto flex flex-col gap-4"
           >
@@ -106,51 +128,17 @@ export default function Index({ data: { site, blog, portfolio, disblePoster, tim
               <div className="divider"></div>
               <h2 className="text-2xl font-bold text-gray-700 underline decoration-violet-500 mb-6">Experiencia</h2>
               <div>
-                {
-                  timelineExperience && timelineExperience.nodes && timelineExperience.nodes.map((experience, i) => (
-                    <div key={`experience-${i}`} className="grid grid-cols-[35px_minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_35px_minmax(0,2fr)]">
-                        <div className="text-sm flex flex-col gap-2 col-start-2 md:col-start-1">
-                          <h3 className="font-bold text-gray-700 text-left md:text-right text-base">{experience.dateStart} - {experience.isCurrentDate ? 'Actualidad' : experience.dateEnd}</h3>
-                          <p className="text-gray-500 text-left md:text-right">{experience.situation}</p>
-                        </div>
-                        <div className="flex flex-row justify-center row-start-1 row-end-3 col-start-1 md:col-start-2">
-                          <div className="relative bg-violet-300 w-[1px] after:h-4 after:w-4 after:rounded-full after:border-2 after:border-violet-400 after:bg-white after:content-[''] after:absolute after:top-1 after:-right-[7.5px]">
-                        </div>
-                        </div>
-                        <div className="text-sm text-gray-700 col-start-2 md:col-start-3 flex flex-col gap-2 mb-4">
-                          <h3 className="font-bold text-gray-700 text-base">{experience.job}</h3>
-                          <StructuredContent content={experience.descriptionJob} />
-                        </div>
-                    </div>
-                  ))
-                }
+                <Timeline content={timelineExperience.nodes} />
               </div>
               <h2 className="text-2xl font-bold text-gray-700 underline decoration-violet-500 mb-6 mt-6">Educación</h2>
               <div>
-                {
-                  timelineEducation && timelineEducation.nodes && timelineEducation.nodes.map((education, i) => (
-                    <div key={`education-${i}`} className="grid grid-cols-[35px_minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_35px_minmax(0,2fr)]">
-                        <div className="text-sm flex flex-col gap-2 col-start-2 md:col-start-1">
-                        <h3 className="font-bold text-gray-700 text-left md:text-right text-base">{education.dateStart} - {education.isCurrentDate ? 'Actualidad' : education.dateEnd}</h3>
-                          <p className="text-gray-500 text-left md:text-right">{education.situation}</p>
-                        </div>
-                        <div className="flex flex-row justify-center row-start-1 row-end-3 col-start-1 md:col-start-2">
-                          <div className="relative bg-violet-300 w-[1px] after:h-4 after:w-4 after:rounded-full after:border-2 after:border-violet-400 after:bg-white after:content-[''] after:absolute after:top-1 after:-right-[7.5px]">
-                        </div>
-                        </div>
-                        <div className="text-sm text-gray-700 col-start-2 md:col-start-3 flex flex-col gap-2 mb-4">
-                          <h3 className="font-bold text-gray-700 text-base">{education.job}</h3>
-                          <StructuredContent content={education.descriptionJob} />
-                        </div>
-                    </div>
-                  ))
-                }
+                <Timeline content={timelineEducation.nodes} />
               </div>
             </section>
             {/* Portfolio */}
             <section className="bg-white py-8 px-5 md:px-10 flex flex-col gap-6" id="portfolio">
               <section>
-                <h2 className="text-3xl font-bold text-gray-700">Portfolio</h2>
+                <h2 className="text-3xl font-bold text-gray-700">Portafolio</h2>
                 <div className="divider"></div>
               </section>
               {/* Publications */}
@@ -220,14 +208,29 @@ export default function Index({ data: { site, blog, portfolio, disblePoster, tim
               {/* Projects */}
               <section>
                 <h2 className="text-2xl font-bold text-gray-700 underline decoration-violet-500 mb-6">Proyectos</h2>
-                <div className="grid grid-cols-4 place-items-stretch gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-stretch gap-6">
                   {
                     portfolio && portfolio.nodes.map((project) => (
-                      <div className="relative bg-white shadow-lg rounded-lg overflow-hidden" key={project.id}>
+                      <div
+                        onClick={(e) => {
+                          console.log({e, project});
+                        }}
+                        className="relative bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer"
+                        key={project.id}
+                      >
                         <Img className="h-full" fluid={project.teaser.fluid} />
-                        <div className="absolute group inset-0 hover:bg-black/50">
-                          <div className="p-4 hidden group-hover:block">
-                            <h3 className="font-bold text-xl text-white">{project.title}</h3>
+                        <div className="absolute group inset-0 hover:bg-white/10 active:bg-white/20">
+                          <div className="p-4 h-full hidden group-hover:flex flex-col group-hover:justify-between">
+                            <span className="font-bold text-white bg-gradient-to-r from-blue-500 to-purple-700 px-2 py-1 w-fit rounded-md">{project.title}</span>
+                            <div className="bottom-1 left-1">
+                              { project.technologies?.split(',').map(tech => {
+                                return (
+                                  <span className="inline-block bg-gray-200 px-2 py-1 text-xs font-semibold mr-2" key={tech}>
+                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-700">{tech}</span>
+                                  </span>
+                                )
+                              }) }
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -238,19 +241,17 @@ export default function Index({ data: { site, blog, portfolio, disblePoster, tim
               {/* Honors & Awards */}
               <section>
                 <h2 className="text-2xl font-bold text-gray-700 underline decoration-violet-500 mb-6">Honores y premios</h2>
-                <ul className="list-disc">
-                  <li>1er Lugar en 1er Concurso Interno de Programación UTN en la categoría de Programación Web y Móvil (2018).</li>
-                </ul>
+                <Timeline content={timelineAwards.nodes} />
               </section>
             </section>
             {/* Contact */}
             <section className="bg-white py-8 px-5 md:px-10" id="cv">
               <h2 className="text-4xl font-bold text-gray-500 mb-6">Contacto</h2>
-              <div className="flex flex-row justify-around gap-8">
+              <div className="flex flex-col md:flex-row md:justify-around gap-8">
                 {/* card button with shadow and transition */}
                 <a
                   href="mailto:disblelab@gmail.com"
-                  className="flex flex-col gap-4 items-center w-full shadow px-6 py-4 border-gray-300 border-2 rounded-lg hover:bg-gray-200 active:bg-gray-300 transition-all duration-300 ease-in-out"
+                  className="flex flex-col gap-4 items-center w-full shadow px-6 py-4 border-gray-300 border-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-all duration-300 ease-in-out"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
@@ -260,7 +261,7 @@ export default function Index({ data: { site, blog, portfolio, disblePoster, tim
                 <a
                   href="https://t.me/disble"
                   target="_blank"
-                  className="flex flex-col gap-4 items-center w-full shadow px-6 py-4 border-gray-300 border-2 rounded-lg hover:bg-gray-200 active:bg-gray-300 transition-all duration-300 ease-in-out"
+                  className="flex flex-col gap-4 items-center w-full shadow px-6 py-4 border-gray-300 border-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-all duration-300 ease-in-out"
                 >
                   <img src={telegramSVG} className="h-8 w-8 text-gray-500" />
                   t.me/disble
@@ -291,15 +292,24 @@ export const query = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
-    portfolio: allDatoCmsPorfolio {
+    portfolio: allDatoCmsPorfolio(
+      sort: { fields: order, order: ASC}
+    ) {
       nodes {
         title
         id
+        order
+        technologies
         feature
         externalLink
         description
         teaser {
           fluid(maxWidth: 300) {
+            ...GatsbyDatoCmsFluid
+          }
+        }
+        galeryOfImages {
+          fluid(maxHeight: 300) {
             ...GatsbyDatoCmsFluid
           }
         }
@@ -318,6 +328,7 @@ export const query = graphql`
     }
     timelineExperience: allDatoCmsTimeline(
       filter: {timelineCategory: {eq: "Experiencia"}}
+      sort: {fields: order, order: ASC}
     ) {
       nodes {
         job
@@ -326,6 +337,7 @@ export const query = graphql`
         dateStart(formatString: "MM/y")
         isCurrentDate
         id
+        order
         imageMinicover {
           fluid(maxWidth: 300) {
             ...GatsbyDatoCmsFluid
@@ -342,6 +354,7 @@ export const query = graphql`
     }
     timelineEducation: allDatoCmsTimeline(
       filter: {timelineCategory: {eq: "Educación"}}
+      sort: {fields: order, order: ASC}
     ) {
       nodes {
         job
@@ -350,6 +363,33 @@ export const query = graphql`
         dateStart(formatString: "MM/y")
         isCurrentDate
         id
+        order
+        imageMinicover {
+          fluid(maxWidth: 300) {
+            ...GatsbyDatoCmsFluid
+          }
+        }
+        timelineCategory
+        situation
+        descriptionJob {
+          value
+          blocks
+          links
+        }
+      }
+    }
+    timelineAwards: allDatoCmsTimeline(
+      filter: {timelineCategory: {eq: "Honores y premios"}}
+      sort: {fields: order, order: ASC}
+    ) {
+      nodes {
+        job
+        locale
+        dateEnd(formatString: "MM/y")
+        dateStart(formatString: "MM/y")
+        isCurrentDate
+        id
+        order
         imageMinicover {
           fluid(maxWidth: 300) {
             ...GatsbyDatoCmsFluid
